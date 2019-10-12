@@ -8,16 +8,23 @@ namespace ConsoleApplication1
 {
     class Presenter
     {
-        //основной массив данных
+        /// <summary>
+        /// основной массив данных
+        /// </summary>
         static Int32[] data = new int[10];
-        
-        //Точка запуска программы
+
+        /// <summary>
+        /// Точка запуска программы
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             MainMenu();
         }
 
-        //Главное меню
+        /// <summary>
+        /// Главное меню
+        /// </summary>
         static void MainMenu()
         {
             RadomForData();
@@ -112,7 +119,11 @@ namespace ConsoleApplication1
             }
         }
 
-        //Обработка изключений на команды пользователя
+        /// <summary>
+        /// Обработка изключений на команды пользователя
+        /// </summary>
+        /// <param name="txt">сюда заходят данные из Console.Write, для проверки на конвертацию в Int</param>
+        /// <returns></returns>
         public static int TryRead(string txt)
         {
             int data;
@@ -131,7 +142,9 @@ namespace ConsoleApplication1
             return 0;
         }
 
-        //Сортировка не четных чисел
+        /// <summary>
+        /// Сортировка не четных чисел
+        /// </summary>
         public static void SortNotChet()
         {
             bool sortOk = false;
@@ -167,7 +180,9 @@ namespace ConsoleApplication1
             }
         }
 
-        //Сортировка четных чисел
+        /// <summary>
+        /// Сортировка четных чисел
+        /// </summary>
         public static void SortChet()
         {
             bool sortOk = false;
@@ -203,7 +218,9 @@ namespace ConsoleApplication1
             }
         }
 
-        //Заполнение массива случайными числами
+        /// <summary>
+        /// Заполнение массива случайными числами
+        /// </summary>
         public static void RadomForData()
         {
             var rnd = new Random();
@@ -212,14 +229,21 @@ namespace ConsoleApplication1
                 data[i] = rnd.Next(10);
             }
         }
-        
-        //удалить данные из ячейки (прировнять к нулю)
+
+        /// <summary>
+        /// удалить данные из ячейки (прировнять к нулю)
+        /// </summary>
+        /// <param name="num">Номер ячейки который нудно отчистить</param>
         public static void DeliteData(int num)
         {
             data[num] = 0;
         }
 
-        //Удалить данные равные ...
+        /// <summary>
+        /// Удалить данные равные определенному значению
+        /// </summary>
+        /// <param name="num">Значение раное чему нам надо удалить</param>
+        /// <param name="luboeChislo">любое число типа Int, тупо заглушка</param>
         public static void DeliteData(int num,int luboeChislo)
         {
             for (int i = 0; i < data.Length; i++)
@@ -231,7 +255,9 @@ namespace ConsoleApplication1
             }
         }
 
-        //удалить первое не четное число
+        /// <summary>
+        /// удалить первое не четное число
+        /// </summary>
         public static void DelFirstNeChet()
         {            
             for (int i = 0; i < data.Length; i++)
@@ -241,11 +267,13 @@ namespace ConsoleApplication1
                     data[i] = 0;
                     break;
                 }
-            }
-           
+            }           
         }
 
-        //Вчислить среднее арифметическое значине, значиний всего массива
+        /// <summary>
+        /// Вчислить среднее арифметическое значине, значиний всего массива
+        /// </summary>
+        /// <returns>Возвращает среднее арифметическое Int</returns>
         public static int Average()
         {
             int avg;
@@ -259,4 +287,6 @@ namespace ConsoleApplication1
             return avg;
         }
     }
+
+    
 }

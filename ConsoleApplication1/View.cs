@@ -9,7 +9,9 @@ namespace ConsoleApplication1
     //Класс для отоюражения данных пользователю
     public class View
     {
-        //отрисовка меню
+        /// <summary>
+        /// отрисовка меню
+        /// </summary>
         public static void StartMenu()
         {
             
@@ -26,15 +28,21 @@ namespace ConsoleApplication1
             Console.WriteLine("15 Выход\n");    
         }
 
-        //выбор ячейки    
+        /// <summary>
+        /// выбор ячейки    
+        /// </summary>
+        /// <returns></returns>
         public static int UserChoose()
         {
             int userChoose;
             userChoose = Presenter.TryRead(Console.ReadLine());
             return userChoose;
         }
-           
-        //ввод пользователем длинны массива
+
+        /// <summary>
+        /// ввод пользователем длинны массива
+        /// </summary>
+        /// <returns></returns>
         public static int arrayLeght()
         {
             int leght;
@@ -43,7 +51,11 @@ namespace ConsoleApplication1
             return leght;
         }
 
-        //выбор ячейки
+        /// <summary>
+        /// выбор ячейки
+        /// </summary>
+        /// <param name="myArray">Массив Int.ов</param>
+        /// <returns></returns>
         public static int ChooseYacheyka(int[] myArray)
         {
             int num;
@@ -56,7 +68,12 @@ namespace ConsoleApplication1
             
         }
 
-        //Добавление данных в ячейку
+        /// <summary>
+        /// Добавление данных в ячейку
+        /// </summary>
+        /// <param name="yacheyka">номер ячейки массива</param>
+        /// <param name="leght">длинна массива</param>
+        /// <returns></returns>
         public static int AddData(int yacheyka, int leght)
         {
             int data;
@@ -65,11 +82,20 @@ namespace ConsoleApplication1
             return data;
         }
 
-        //Отображение сообщения
+        /// <summary>
+        /// Отображение данных в коносли
+        /// </summary>
+        /// <param name="msg">Текстовое сообщение для отображения данных в консоли</param>
         public static void Messege(string msg)
         {
             Console.WriteLine(msg);
         }
+
+        /// <summary>
+        /// Отображение данных в консоли
+        /// </summary>
+        /// <param name="msg">Текстовое сообщение для отображения данных в консоли</param>
+        /// <param name="num">Вставить цифру в текст</param>
         public static void Messege(string msg,int num)
         {
             Console.WriteLine(msg,num);
