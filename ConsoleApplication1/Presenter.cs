@@ -8,7 +8,7 @@ namespace ConsoleApplication1
 {
     class Presenter
     {
-        static Int32[] data = new int[11];
+        static Int32[] data = new int[10];
         
 
         static void Main(string[] args)
@@ -58,11 +58,17 @@ namespace ConsoleApplication1
 
                     case 4:
                         Console.Clear();
-                        Console.WriteLine("Вы сересортировали не четные элементы массива по убыванию\n");
-                        Sort();
+                        Console.WriteLine("Вы пересортировали не четные элементы массива по убыванию\n");
+                        SortNotChet();
                         break;
 
                     case 5:
+                        Console.Clear();
+                        Console.WriteLine("Вы пересортировали четные элементы массива по убыванию\n");
+                        SortChet();
+                        break;
+
+                    case 6:
                         Console.Clear();
                         for (int i = 0; i < data.Length; i++)
                         {
@@ -70,7 +76,7 @@ namespace ConsoleApplication1
                         }
                         break;
 
-                    case 6:
+                    case 7:
                        
                         MainCikl = false;
                         break;
@@ -107,34 +113,78 @@ namespace ConsoleApplication1
 
 
 
-        public static void Sort()
+        public static void SortNotChet()
         {
             bool sortOk = false;
+            bool change;
             int tempdata;
+
             while (!sortOk)
 
             {
+                change = false;
                 for (int i = 0; i < data.Length; i++)
                 {
 
-                    if (i+3 <= data.Length)
+                    if (i+2 <= data.Length-1)
                     {
-                        if ((data[i] < data[i + 2])&& ((i+1) % 2 == 0))
+                        if ((data[i] < data[i + 2])&& ((i+1) % 2 > 0))
                         {
                             tempdata = data[i];
-                            data[i] = data[i + 1];
-                            data[i + 1] = tempdata;
+                            data[i] = data[i + 2];
+                            data[i + 2] = tempdata;
+                            change = true;
+
                         }
-                    } 
-                    else
-                    {
-                        sortOk = true;
                     }
+
                 
 
                 }
+                if(!change)
+                {
+                    sortOk = true;
+                }
             }
         }
+
+
+        public static void SortChet()
+        {
+            bool sortOk = false;
+            bool change;
+            int tempdata;
+
+            while (!sortOk)
+
+            {
+                change = false;
+                for (int i = 0; i < data.Length; i++)
+                {
+
+                    if (i + 2 <= data.Length - 1)
+                    {
+                        if ((data[i] < data[i + 2]) && ((i + 1) % 2 == 0))
+                        {
+                            tempdata = data[i];
+                            data[i] = data[i + 2];
+                            data[i + 2] = tempdata;
+                            change = true;
+
+                        }
+                    }
+
+
+
+                }
+                if (!change)
+                {
+                    sortOk = true;
+                }
+            }
+        }
+
+
 
 
         public static void RadomForData()
@@ -145,5 +195,7 @@ namespace ConsoleApplication1
                 data[i] = rnd.Next(10);
             }
         }
+
+        
     }
 }

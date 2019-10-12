@@ -16,9 +16,11 @@ namespace ConsoleApplication1
             Console.WriteLine("2 Удалить данные из ячейки массива\n");
             Console.WriteLine("3 вывод информации из ячейки массива\n");
             Console.WriteLine("4 Сортировка не четных элементов массива\n");
-            Console.WriteLine("5 Показать все значения в массиве\n");
-            Console.WriteLine("6 Выход\n");
+            Console.WriteLine("5 Сортировка четных элементов массива\n");
+            Console.WriteLine("6 Показать все значения в массиве\n");
+            Console.WriteLine("7 Выход\n");
             
+
         }
 
 
