@@ -20,8 +20,10 @@ namespace ConsoleApplication1
             Console.WriteLine("4 Сортировка не четных элементов массива\n");
             Console.WriteLine("5 Сортировка четных элементов массива\n");
             Console.WriteLine("6 Показать все значения в массиве\n");
-            Console.WriteLine("7 Удалить первый четный элемент");
-            Console.WriteLine("8 Выход\n");    
+            Console.WriteLine("7 Удалить первый четный элемент\n");
+            Console.WriteLine("8 Удалить элемент с заданым значением\n");
+            Console.WriteLine("9 Удалить элемент равный среднему арифметическому масива\n");
+            Console.WriteLine("15 Выход\n");    
         }
 
         //выбор ячейки    
@@ -63,6 +65,7 @@ namespace ConsoleApplication1
             return data;
         }
 
+        //Отображение сообщения
         public static void Messege(string msg)
         {
             Console.WriteLine(msg);

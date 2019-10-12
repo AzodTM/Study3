@@ -34,23 +34,23 @@ namespace ConsoleApplication1
 
                 switch (choose)
                 {
-                    case 1:
-                        Console.Clear();
-                        Console.WriteLine("Выберете ячейку в которой нужно изменить данные. Величина массива = {0}\n", data.Length - 1);
+                    //1 Добавить данные в ячейку массива
+                    case 1:                        
+                        View.Messege("Выберете ячейку в которой нужно изменить данные. Величина массива = {0}\n", data.Length - 1);
                         num = View.ChooseYacheyka(data);
                         data[num] = View.AddData(num, data.Length);
                         break;
 
-                    case 2:
-                        Console.Clear();
-                        Console.WriteLine("Выберете ячейку в которой нужно уждалить данные. Величина массива = {0}\n", data.Length - 1);
+                    //2 Удалить данные из ячейки массива
+                    case 2:                        
+                        View.Messege("Выберете ячейку в которой нужно уждалить данные. Величина массива = {0}\n", data.Length - 1);
                         num = View.ChooseYacheyka(data);
-                        data[num] = 0;
+                        DeliteData(num);
                         break;
 
-                    case 3:
-                        Console.Clear();
-                        Console.WriteLine("Выведете ячейку для отображения данных. Величина массива = {0}\n", data.Length - 1);
+                    //3 вывод информации из ячейки массива
+                    case 3:                        
+                        View.Messege("Выведете ячейку для отображения данных. Величина массива = {0}\n", data.Length - 1);
                         num = View.ChooseYacheyka(data);
                         try
                         {
@@ -58,35 +58,50 @@ namespace ConsoleApplication1
                         }
                         catch
                         {
-                            Console.WriteLine("Ячейки {0} не существует", num);
+                            View.Messege("Ячейки {0} не существует", num);
                         }
                         Console.WriteLine();
                         break;
 
-                    case 4:
-                        Console.Clear();
-                        Console.WriteLine("Вы пересортировали не четные элементы массива по убыванию\n");
+                    //4 Сортировка не четных элементов массива
+                    case 4:                        
+                        View.Messege("Вы пересортировали не четные элементы массива по убыванию\n");
                         SortNotChet();
                         break;
 
-                    case 5:
-                        Console.Clear();
-                        Console.WriteLine("Вы пересортировали четные элементы массива по убыванию\n");
+                    //5 Сортировка четных элементов массива
+                    case 5:                        
+                        View.Messege("Вы пересортировали четные элементы массива по убыванию\n");
                         SortChet();
                         break;
 
-                    case 6:
-                        Console.Clear();
+                    //6 Показать все значения в массиве
+                    case 6:                       
                         for (int i = 0; i < data.Length; i++)
                         {
                             Console.WriteLine(data[i]);
                         }
                         break;
 
-                    case 7:
+                    //7 Удалить первый четный элемент
+                    case 7:                                                               
+                        DelFirstNeChet();
+                        break;
 
+                    //8 Удалить элемент с заданым значением
                     case 8:
+                        num = View.ChooseYacheyka(data);
+                        DeliteData(num, 0);
+                        break;
 
+                    //9 Удалить элемент равный среднему арифметическому масива
+                    case 9:
+                        DeliteData(Average());
+                        View.Messege("Удалены элементы со значением {0}", Average());
+                        break;
+
+                    //Выход
+                    case 15:
                         MainCikle = false;
                         break;
 
@@ -108,8 +123,8 @@ namespace ConsoleApplication1
             }
             catch
             {
-                
-                Console.WriteLine("Не верный формат данных\n");
+
+                View.Messege("Не верный формат данных\n");
 
             }
             Console.Clear();
@@ -197,7 +212,51 @@ namespace ConsoleApplication1
                 data[i] = rnd.Next(10);
             }
         }
-
         
+        //удалить данные из ячейки (прировнять к нулю)
+        public static void DeliteData(int num)
+        {
+            data[num] = 0;
+        }
+
+        //Удалить данные равные ...
+        public static void DeliteData(int num,int luboeChislo)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                if(data[i]==num)
+                {
+                    data[i] = 0;
+                }
+            }
+        }
+
+        //удалить первое не четное число
+        public static void DelFirstNeChet()
+        {            
+            for (int i = 0; i < data.Length; i++)
+            {
+                if (data[i] % 2 > 0)
+                {
+                    data[i] = 0;
+                    break;
+                }
+            }
+           
+        }
+
+        //Вчислить среднее арифметическое значине, значиний всего массива
+        public static int Average()
+        {
+            int avg;
+            int sum = 0;
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sum += data[i];
+            }
+            avg = sum / data.Length;
+            return avg;
+        }
     }
 }
