@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
+    //Класс для отоюражения данных пользователю
     public class View
     {
+        //отрисовка меню
         public static void StartMenu()
         {
             
@@ -18,13 +20,11 @@ namespace ConsoleApplication1
             Console.WriteLine("4 Сортировка не четных элементов массива\n");
             Console.WriteLine("5 Сортировка четных элементов массива\n");
             Console.WriteLine("6 Показать все значения в массиве\n");
-            Console.WriteLine("7 Выход\n");
-            
-
+            Console.WriteLine("7 Удалить первый четный элемент");
+            Console.WriteLine("8 Выход\n");    
         }
 
-
-
+        //выбор ячейки    
         public static int UserChoose()
         {
             int userChoose;
@@ -32,9 +32,7 @@ namespace ConsoleApplication1
             return userChoose;
         }
            
-       
-
-
+        //ввод пользователем длинны массива
         public static int arrayLeght()
         {
             int leght;
@@ -43,7 +41,7 @@ namespace ConsoleApplication1
             return leght;
         }
 
-
+        //выбор ячейки
         public static int ChooseYacheyka(int[] myArray)
         {
             int num;
@@ -56,7 +54,7 @@ namespace ConsoleApplication1
             
         }
 
-
+        //Добавление данных в ячейку
         public static int AddData(int yacheyka, int leght)
         {
             int data;
@@ -65,6 +63,15 @@ namespace ConsoleApplication1
             return data;
         }
 
+        public static void Messege(string msg)
+        {
+            Console.WriteLine(msg);
+        }
+        public static void Messege(string msg,int num)
+        {
+            Console.WriteLine(msg,num);
+        }
+        
 
     }
 }

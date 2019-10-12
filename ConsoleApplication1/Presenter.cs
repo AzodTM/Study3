@@ -8,42 +8,49 @@ namespace ConsoleApplication1
 {
     class Presenter
     {
+        //основной массив данных
         static Int32[] data = new int[10];
         
-
+        //Точка запуска программы
         static void Main(string[] args)
         {
+            MainMenu();
+        }
+
+        //Главное меню
+        static void MainMenu()
+        {
             RadomForData();
-            bool MainCikl = true;
+            bool MainCikle = true;
             int choose;
             int num;
 
-            while (MainCikl)                               
+            while (MainCikle)
             {
                 View.StartMenu();
                 choose = View.UserChoose();
-                
+
 
 
                 switch (choose)
                 {
                     case 1:
                         Console.Clear();
-                        Console.WriteLine("Выберете ячейку в которой нужно изменить данные. Величина массива = {0}\n", data.Length-1);
+                        Console.WriteLine("Выберете ячейку в которой нужно изменить данные. Величина массива = {0}\n", data.Length - 1);
                         num = View.ChooseYacheyka(data);
                         data[num] = View.AddData(num, data.Length);
                         break;
 
                     case 2:
                         Console.Clear();
-                        Console.WriteLine("Выберете ячейку в которой нужно уждалить данные. Величина массива = {0}\n", data.Length-1);
+                        Console.WriteLine("Выберете ячейку в которой нужно уждалить данные. Величина массива = {0}\n", data.Length - 1);
                         num = View.ChooseYacheyka(data);
-                        data[num] = 0;                        
+                        data[num] = 0;
                         break;
 
                     case 3:
                         Console.Clear();
-                        Console.WriteLine("Выведете ячейку для отображения данных. Величина массива = {0}\n",data.Length-1);
+                        Console.WriteLine("Выведете ячейку для отображения данных. Величина массива = {0}\n", data.Length - 1);
                         num = View.ChooseYacheyka(data);
                         try
                         {
@@ -51,7 +58,7 @@ namespace ConsoleApplication1
                         }
                         catch
                         {
-                            Console.WriteLine("Ячейки {0} не существует",num);
+                            Console.WriteLine("Ячейки {0} не существует", num);
                         }
                         Console.WriteLine();
                         break;
@@ -77,22 +84,20 @@ namespace ConsoleApplication1
                         break;
 
                     case 7:
-                       
-                        MainCikl = false;
+
+                    case 8:
+
+                        MainCikle = false;
                         break;
 
 
                 }
 
-            
+
             }
-            
-             
         }
 
-
-       
-
+        //Обработка изключений на команды пользователя
         public static int TryRead(string txt)
         {
             int data;
@@ -111,8 +116,7 @@ namespace ConsoleApplication1
             return 0;
         }
 
-
-
+        //Сортировка не четных чисел
         public static void SortNotChet()
         {
             bool sortOk = false;
@@ -148,7 +152,7 @@ namespace ConsoleApplication1
             }
         }
 
-
+        //Сортировка четных чисел
         public static void SortChet()
         {
             bool sortOk = false;
@@ -184,9 +188,7 @@ namespace ConsoleApplication1
             }
         }
 
-
-
-
+        //Заполнение массива случайными числами
         public static void RadomForData()
         {
             var rnd = new Random();
