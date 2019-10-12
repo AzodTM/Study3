@@ -18,7 +18,7 @@ namespace ConsoleApplication1
             Console.WriteLine("4 Сортировка не четных элементов массива\n");
             Console.WriteLine("5 Показать все значения в массиве\n");
             Console.WriteLine("6 Выход\n");
-            Console.WriteLine("7 тест\n");
+            
         }
 
 
