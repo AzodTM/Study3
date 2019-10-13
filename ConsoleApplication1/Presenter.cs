@@ -29,117 +29,134 @@ namespace ConsoleApplication1
         {
             RadomForData();
             bool MainCikle = true;
-            int choose;
+            bool UserDataInput;
+            string chooseTxt;
+            int chooseInt;
             int num;
 
             while (MainCikle)
             {
+                View.Clean();
                 View.StartMenu();
-                choose = View.UserChoose();
-
-
-
-                switch (choose)
+                chooseTxt = View.UserChoose();
+                UserDataInput = CheckUserData(chooseTxt);        
+                if(UserDataInput)
                 {
-                    //1 Добавить данные в ячейку массива
-                    case 1:                        
-                        View.Messege("Выберете ячейку в которой нужно изменить данные. Величина массива = {0}\n", data.Length - 1);
-                        num = View.ChooseYacheyka(data);
-                        data[num] = View.AddData(num, data.Length);
-                        break;
+                    chooseInt = Convert.ToInt32(chooseTxt);
 
-                    //2 Удалить данные из ячейки массива
-                    case 2:                        
-                        View.Messege("Выберете ячейку в которой нужно уждалить данные. Величина массива = {0}\n", data.Length - 1);
-                        num = View.ChooseYacheyka(data);
-                        DeliteData(num);
-                        break;
+                    switch (chooseInt)
+                    {
+                        //1 Изменить данные в ячейке массива
+                        case 1:
+                            ChangeData();
+                            break;
 
-                    //3 вывод информации из ячейки массива
-                    case 3:                        
-                        View.Messege("Выведете ячейку для отображения данных. Величина массива = {0}\n", data.Length - 1);
-                        num = View.ChooseYacheyka(data);
-                        try
-                        {
-                            Console.WriteLine(data[num]);
-                        }
-                        catch
-                        {
-                            View.Messege("Ячейки {0} не существует", num);
-                        }
-                        Console.WriteLine();
-                        break;
+                        //2 Удалить данные из ячейки массива
+                        case 2:
+                            DeliteDataFromCell();
+                            break;
 
-                    //4 Сортировка не четных элементов массива
-                    case 4:                        
-                        View.Messege("Вы пересортировали не четные элементы массива по убыванию\n");
-                        SortNotChet();
-                        break;
+                        //3 вывод информации из ячейки массива
+                        case 3:
+                            View.Clean();
+                            View.Messege("Выведете ячейку для отображения данных. Величина массива = {0}\n", data.Length - 1);
+                            chooseTxt = InputData();
+                            if (CheckIntIsArrayLength(chooseTxt))
+                            {
+                                View.Messege(chooseTxt);
+                                View.PauseAndClean();
+                            }
+                            break;
 
-                    //5 Сортировка четных элементов массива
-                    case 5:                        
-                        View.Messege("Вы пересортировали четные элементы массива по убыванию\n");
-                        SortChet();
-                        break;
+                        //4 Сортировка не четных элементов массива
+                        case 4:
+                            View.Clean();
+                            View.Messege("Вы пересортировали не четные элементы массива по убыванию\n");
+                            SortNotChet();
+                            View.PauseAndClean();
+                            break;
 
-                    //6 Показать все значения в массиве
-                    case 6:                       
-                        for (int i = 0; i < data.Length; i++)
-                        {
-                            Console.WriteLine(data[i]);
-                        }
-                        break;
+                        //5 Сортировка четных элементов массива
+                        case 5:
+                            View.Clean();
+                            View.Messege("Вы пересортировали четные элементы массива по убыванию\n");
+                            SortChet();
+                            View.PauseAndClean();
+                            break;
 
-                    //7 Удалить первый четный элемент
-                    case 7:                                                               
-                        DelFirstNeChet();
-                        break;
+                        //6 Показать все значения в массиве
+                        case 6:
+                            View.Clean();
+                            View.Messege("Все знаяения массива:\n");
+                            for (int i = 0; i < data.Length; i++)
+                            {
+                                View.Messege(data[i]);
+                            }
+                            View.PauseAndClean();
+                            break;
 
-                    //8 Удалить элемент с заданым значением
-                    case 8:
-                        num = View.ChooseYacheyka(data);
-                        DeliteData(num, 0);
-                        break;
+                        //7 Удалить первый четный элемент
+                        case 7:                            
+                            DelFirstChet();                           
+                            break;
 
-                    //9 Удалить элемент равный среднему арифметическому масива
-                    case 9:
-                        DeliteData(Average());
-                        View.Messege("Удалены элементы со значением {0}", Average());
-                        break;
+                        //8 Удалить элемент с заданым значением
+                        case 8:                            
+                            DeliteData(InputData());
+                            break;
 
-                    //Выход
-                    case 15:
-                        MainCikle = false;
-                        break;
+                        //9 Удалить элемент равный среднему арифметическому масива
+                        case 9:
+                            DeliteData(Average());
+                            View.Messege("Удалены элементы со значением {0}", Average());
+                            break;
+
+                        //Выход
+                        case 15:
+                            MainCikle = false;
+                            break;
+                    }
 
 
                 }
 
 
             }
+        }       
+
+        /// <summary>
+        /// выбор ячейки 
+        /// </summary>
+        /// <param name="userStringData"></param>
+        /// <returns></returns>
+        public static void ChangeData()
+        {
+            string inputCell;            
+            inputCell = InputData();
+            if(CheckIntIsArrayLength(inputCell))
+            {
+                string inputData;
+                View.Clean();
+                View.Messege("Введите данные для добавления в ячейку № {0}", Convert.ToInt32(inputCell));
+                inputData = View.InputString();
+                if(CheckUserData(inputData))
+                {
+                    data[Convert.ToInt32(inputCell)] = Convert.ToInt32(inputData);
+                }
+            } 
+            View.PauseAndClean(); 
         }
 
         /// <summary>
-        /// Обработка изключений на команды пользователя
+        /// Ввод данных пользователем
         /// </summary>
-        /// <param name="txt">сюда заходят данные из Console.Write, для проверки на конвертацию в Int</param>
         /// <returns></returns>
-        public static int TryRead(string txt)
+        public static string InputData()
         {
-            int data;
-            try
-            {
-                data = Convert.ToInt32(txt);
-                return data;
-            }
-            catch
-            {
-
-                View.Messege("Не верный формат данных\n");
-
-            }
-            Console.Clear();
-            return 0;
+            string inputCell;
+            View.Clean();
+            View.Messege("Выберете ячейку. Величина массива = {0}\n", data.Length - 1);
+            return View.UserChoose();
         }
 
         /// <summary>
@@ -226,25 +243,29 @@ namespace ConsoleApplication1
             var rnd = new Random();
             for (int i = 0; i < data.Length; i++)
             {
-                data[i] = rnd.Next(10);
+                data[i] = rnd.Next(30);
             }
         }
 
         /// <summary>
-        /// удалить данные из ячейки (прировнять к нулю)
+        /// удалить данные из ячейки номер
         /// </summary>
         /// <param name="num">Номер ячейки который нудно отчистить</param>
-        public static void DeliteData(int num)
+        public static void DeliteData(string userStringData)
         {
-            data[num] = 0;
-        }
+            if(CheckIntIsArrayLength(userStringData))
+            {
+                data[Convert.ToInt32(userStringData)] = 0;
+            }
+            
+        }        
 
         /// <summary>
         /// Удалить данные равные определенному значению
         /// </summary>
         /// <param name="num">Значение раное чему нам надо удалить</param>
         /// <param name="luboeChislo">любое число типа Int, тупо заглушка</param>
-        public static void DeliteData(int num,int luboeChislo)
+        public static void DeliteData(int num)
         {
             for (int i = 0; i < data.Length; i++)
             {
@@ -256,13 +277,26 @@ namespace ConsoleApplication1
         }
 
         /// <summary>
+        /// Удалить наддые в выбраной ячейке
+        /// </summary>
+        /// <param name="userInput"></param>
+        public static void DeliteDataFromCell()
+        {
+            string userInput = InputData();
+            if(CheckIntIsArrayLength(userInput))
+            {
+                DeliteData(userInput);
+            }
+        }
+
+        /// <summary>
         /// удалить первое не четное число
         /// </summary>
-        public static void DelFirstNeChet()
+        public static void DelFirstChet()
         {            
             for (int i = 0; i < data.Length; i++)
             {
-                if (data[i] % 2 > 0)
+                if (data[i] % 2 == 0)
                 {
                     data[i] = 0;
                     break;
@@ -286,6 +320,53 @@ namespace ConsoleApplication1
             avg = sum / data.Length;
             return avg;
         }
+        
+        /// <summary>
+        /// Проверка можно ли законвертить строку в число
+        /// </summary>
+        /// <param name="txt">сюда заходят данные из Console.Write, для проверки на конвертацию в Int</param>
+        /// <returns></returns>
+        public static bool CheckUserData(string txt)
+        {            
+            try
+            {
+                Convert.ToInt32(txt);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+
+        /// <summary>
+        /// Совпадает ли данное число(преобразованное из строки) длинне массива
+        /// </summary>
+        /// <param name="txt"></param>
+        /// <returns></returns>
+        public static bool CheckIntIsArrayLength(string txt)
+        {
+            if (CheckUserData(txt))
+            {
+                if ((Convert.ToInt32(txt) >=0)&&(Convert.ToInt32(txt) < data.Length))
+                {                    
+                    return true;
+                }
+                else
+                {
+                    View.Messege("Значение вне границы диапазона массива");
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+
     }
 
     

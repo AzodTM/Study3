@@ -13,8 +13,7 @@ namespace ConsoleApplication1
         /// отрисовка меню
         /// </summary>
         public static void StartMenu()
-        {
-            
+        {            
             Console.WriteLine("Выберете действие с массивом\n");
             Console.WriteLine("1 Добавить данные в ячейку массива\n");
             Console.WriteLine("2 Удалить данные из ячейки массива\n");
@@ -32,23 +31,19 @@ namespace ConsoleApplication1
         /// выбор ячейки    
         /// </summary>
         /// <returns></returns>
-        public static int UserChoose()
-        {
-            int userChoose;
-            userChoose = Presenter.TryRead(Console.ReadLine());
-            return userChoose;
+        public static string UserChoose()
+        {              
+            return Console.ReadLine();            
         }
 
         /// <summary>
         /// ввод пользователем длинны массива
         /// </summary>
         /// <returns></returns>
-        public static int arrayLeght()
-        {
-            int leght;
+        public static string arrayLeght()
+        {            
             Console.WriteLine("введите длинну массива\n");
-            leght = Presenter.TryRead(Console.ReadLine());
-            return leght;
+            return Console.ReadLine();            
         }
 
         /// <summary>
@@ -56,31 +51,10 @@ namespace ConsoleApplication1
         /// </summary>
         /// <param name="myArray">Массив Int.ов</param>
         /// <returns></returns>
-        public static int ChooseYacheyka(int[] myArray)
-        {
-            int num;
-                        
-            Console.WriteLine("введите номер ячейки максимальная длинна {0}\n", myArray.Length-1);
-                       
-            
-            num = Presenter.TryRead(Console.ReadLine());
-            return num;
-            
-        }
-
-        /// <summary>
-        /// Добавление данных в ячейку
-        /// </summary>
-        /// <param name="yacheyka">номер ячейки массива</param>
-        /// <param name="leght">длинна массива</param>
-        /// <returns></returns>
-        public static int AddData(int yacheyka, int leght)
-        {
-            int data;
-            Console.WriteLine("Введите данные для добавления в ячейку № {0}", yacheyka);
-            data = Convert.ToInt32(Console.ReadLine());
-            return data;
-        }
+        public static string InputString()
+        {             
+            return Console.ReadLine();                      
+        } 
 
         /// <summary>
         /// Отображение данных в коносли
@@ -100,7 +74,33 @@ namespace ConsoleApplication1
         {
             Console.WriteLine(msg,num);
         }
-        
+
+        /// <summary>
+        /// Отображение данных в коносли
+        /// </summary>
+        /// <param name="msg">Показать в консоли цифру</param>
+        public static void Messege(int msg)
+        {
+            Console.WriteLine(msg);
+        }
+
+        /// <summary>
+        /// Ожидание нажатия клавиши и отчистка консоли
+        /// </summary>
+        public static void PauseAndClean()
+        {
+            Console.WriteLine("Нажмите любую клавишу для продолжения");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        /// <summary>
+        /// Отчистка консоли
+        /// </summary>
+        public static void Clean()
+        {            
+            Console.Clear();
+        }
 
     }
 }
